@@ -18,6 +18,8 @@ You first write the states by inheriting from `State` then you put it all togeth
 
 Take this as a simple example with a play state and a pause state.
 
+We want to toggle between play and pause state when the user presses "p"
+
 ```py
 import pygame as pg
 from StateManager import State, StateManager
@@ -39,7 +41,6 @@ class PlayState(State):
         s is the surface or screen you may draw to
         """
 
-# Essentially the same state
 class PauseState(State):
     def on_enter(self, _frm):
         print("Pausing")
@@ -63,25 +64,29 @@ Now you can use your state machine like this.
 The state machine will by default just draw to the main screen. 
 
 ```py
+SCREEN = pg.display.set_mode((900, 600))
+
 while running:
-    dt = clock.tick(60) #ms
+    dt = clock.tick(60)
     events = pg.event.get()
     for event in events:
         if event.type == pg.QUIT:
             running = False
         if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
             running = False
-    SCREEN.fill(pg.color.Color("white"))
+        # we could also have done the toggle here
+    SCREEN.fill("white")
     sm(events, dt)
     pg.display.flip()
 ```
 
-The default loading state draws a little spinner. If you want to change how that works, simply override the LoadingState.
+The default loading state draws a little spinner. If you want to change how that works, simply override the `LoadingState`.
 
 For example:
 
 ```py
 from StateManager import LoadingState
+
 class BlankLoadingState(LoadingState):
     def __init__(self, color):
         self.color = color
