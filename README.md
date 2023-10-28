@@ -6,9 +6,16 @@ This means you can use heavy initialization and entry code without having to wor
 
 # Set Up
 
+You can choose to install either `pygame` or the community version `pygame-ce`
+```shell
+pip install pygame
+# or
+pip install pygame-ce
+```
+
 The package is called pgsm (`PyGameStateMachine`)
 
-```
+```shell
 pip install pgsm
 ```
 
