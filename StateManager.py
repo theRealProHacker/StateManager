@@ -114,7 +114,7 @@ class StateManager:
         else:
             # Make sure events are not None
             events = events if events is not None else get_events()
-            dt = dt if events is not None else time.get_ticks()
+            dt = dt if dt is not None else time.get_ticks()
             if not self.loading[self._current_state]:
                 self.current_state().update(events, dt)
             else:
