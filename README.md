@@ -13,7 +13,7 @@ pip install pygame
 pip install pygame-ce
 ```
 
-The package is called pgsm (`PyGameStateMachine`)
+The package is called pgsm (`PyGame State Manager`)
 
 ```shell
 pip install pgsm
@@ -32,14 +32,14 @@ import pygame as pg
 from StateManager import State, StateManager
 
 class PlayState(State):
-    def on_enter(self):
+    def on_enter(self, frm):
         print("Playing")
 
-    def update(events, dt):
+    def update(self, events, dt):
         # This is an example for handling events
         # and changing states
         for event in events:
-            if event.type == pg.KeyDown and event.key == pg.K_p:
+            if event.type == pg.KEYDOWN and event.key == pg.K_p:
                 self.exit("pause")
 
     def draw(self, s):
@@ -49,10 +49,10 @@ class PlayState(State):
         """
 
 class PauseState(State):
-    def on_enter(self, _frm):
+    def on_enter(self, frm):
         print("Pausing")
 
-    def update(events, dt):
+    def update(self, events, dt):
         for event in events:
             if event.type == pg.KEYDOWN and event.key == pg.K_p:
                 self.exit("play")
